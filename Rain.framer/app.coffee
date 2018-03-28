@@ -112,6 +112,15 @@ linesContainer.on Events.TouchMove, (event, layer) ->
 			options:
 				time: .2
 				
+ScrollView = new ScrollComponent
+	parent: Apple_iPhone_X
+	height: Framer.Device.screen.height
+	width: Framer.Device.screen.width
+	scrollHorizontal: false
+	
+gradient.parent = ScrollView.content
+
+
 Time_Indicator.backgroundColor = "rgba(255,255,255, 0.25)"
 Time_Indicator.padding = 5
 Time_Indicator.borderRadius = 6
