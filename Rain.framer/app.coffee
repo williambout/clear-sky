@@ -8,6 +8,7 @@ Current_City.text = dataCurrentCity.city
 # ✖️ Variables
 lines = []
 data = {}
+currentLine = {}
 linesData = []
 gradients = [
 	{icon: "clear-day", start: Clear_Day.gradient.start, end:  Clear_Day.gradient.end},
@@ -78,26 +79,33 @@ Utils.delay 1, ->
 refresh.onClick (event, layer) ->
 	getWeatherData()
 	
+linesContainer.on Events.MouseOut, () ->
+	currentLine.animate
+		backgroundColor: 'rgba(0,0,0, 0.25)'
+		options:
+			time: .2
+	
 linesContainer.on Events.TouchMove, (event, layer) ->
 	if Utils.isDesktop()
 		x_position = event.point.x
 	else
 		x_position = Events.touchEvent(event).clientX/window.devicePixelRatio
 			
-	currentLine = Math.floor x_position/numberOfLines
+	indexCurrentLine = Math.floor x_position/numberOfLines
+	currentLine = lines[indexCurrentLine]
 	
-	probability_value_percentage = Math.floor lines[currentLine].custom.data.precipProbability * 100
+	probability_value_percentage = Math.floor currentLine.custom.data.precipProbability * 100
 	probability_value.text = probability_value_percentage + "%"
 	
-	end = moment.unix(lines[currentLine].custom.data.time)
+	end = moment.unix(currentLine.custom.data.time)
 	Time_Indicator.text =  moment(end).fromNow(true)
 	
-	lines[currentLine].animate
-		backgroundColor: 'rgba(255,255,255, 0.95)'
+	currentLine.animate
+		backgroundColor: "rgba(255,255,255, 0.95)"
 		options:
 			time: 0
 	
-	lines_to_fade = lines.filter (x) -> x != lines[currentLine]
+	lines_to_fade = lines.filter (x) -> x != lines[indexCurrentLine]
 	for i in [0...lines_to_fade.length]
 		lines_to_fade[i].animate
 			backgroundColor: "rgba(0,0,0, 0.25)"
