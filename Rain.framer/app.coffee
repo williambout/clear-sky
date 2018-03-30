@@ -76,9 +76,6 @@ for i in [0...numberOfLines]
 Utils.delay 1, ->
 	getWeatherData()
 
-refresh.onClick (event, layer) ->
-	getWeatherData()
-	
 linesContainer.on Events.MouseOut, () ->
 	currentLine.animate
 		backgroundColor: 'rgba(0,0,0, 0.25)'
@@ -111,15 +108,25 @@ linesContainer.on Events.TouchMove, (event, layer) ->
 			backgroundColor: "rgba(0,0,0, 0.25)"
 			options:
 				time: .2
-				
+
+gradient.height = Screen.height + 800
+info.y = 42 + 400
+
 ScrollView = new ScrollComponent
 	parent: Apple_iPhone_X
-	height: Framer.Device.screen.height
-	width: Framer.Device.screen.width
+	size: Screen.size
 	scrollHorizontal: false
+	clip: false
+	contentInset:
+		top: -400
+		bottom: -400
 	
 gradient.parent = ScrollView.content
 
+ScrollView.onMove (event) ->
+	if event.y > 100
+		getWeatherData()
+		
 
 Time_Indicator.backgroundColor = "rgba(255,255,255, 0.25)"
 Time_Indicator.padding = 5
