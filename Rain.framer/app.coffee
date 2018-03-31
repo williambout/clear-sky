@@ -8,6 +8,9 @@ Current_City.text = dataCurrentCity.city
 # ✖️ Variables
 loading = false
 spinnerLoop = null
+pullToRefreshDistance = 140
+pullToRefreshDistanceLoading = 140
+insetDistance = 400
 lines = []
 data = {}
 currentLine = {}
@@ -52,7 +55,7 @@ getWeatherData = () ->
 			y: 250 - newHeight
 			height: newHeight
 
-# 📊 Draw lines
+# 📊 Lines
 linesContainer = new Layer
 	x: container_margins
 	y: Screen.height - (container_margins + container_height)
@@ -75,33 +78,7 @@ for i in [0...numberOfLines]
 		custom: data: {}
 	lines.push(line)
 
-#Spinner
-spinnerAnimation = ->
-	spinnerLoop = spinner.animate
-		rotation: 360
-		options:
-			time: 1
-			curve: Bezier.linear
-
-	spinnerLoop.on Events.AnimationEnd, ->
-		spinnerLoop.restart()
-		
-stopSpinnerAnimation = ->
-	spinner.animate
-		scale: 0
-		opacity: 0
-		
-	spinnerLoop.stop()
-
-Utils.delay 1, ->
-	getWeatherData()
-
-linesContainer.on Events.MouseOut, () ->
-	currentLine.animate
-		backgroundColor: 'rgba(0,0,0, 0.25)'
-		options:
-			time: .2
-	
+#Lines Hover
 linesContainer.on Events.TouchMove, (event, layer) ->
 	if Utils.isDesktop()
 		x_position = event.point.x
@@ -128,67 +105,101 @@ linesContainer.on Events.TouchMove, (event, layer) ->
 			backgroundColor: "rgba(0,0,0, 0.25)"
 			options:
 				time: .2
+			
+linesContainer.on Events.MouseOut, () ->
+	currentLine.animate
+		backgroundColor: 'rgba(0,0,0, 0.25)'
+		options:
+			time: .2
 
-gradient.height = Screen.height + 800
-info.y = 77 + 400
+#⏳ Spinner
+spinnerAnimation = ->
+	spinnerLoop = spinner.animate
+		rotation: 360
+		options:
+			time: 1
+			curve: Bezier.linear
+	
+	spinnerLoop.start()
+
+	spinnerLoop.on Events.AnimationEnd, ->
+		spinnerLoop.restart()
+		
+stopSpinnerAnimation = ->
+	spinner.animate
+		scale: 0
+		opacity: 0
+		
+	for dash, i in spinner.children
+		dash.animate
+			opacity: 0
+			
+	Utils.delay 1, ->
+		spinner.animate
+			scale: 1
+			opacity: 1
+
+	spinnerLoop.stop()
+
+#📱 ScrollView
+gradient.height = Screen.height + 2 * insetDistance
+info.y = 77 + insetDistance
 spinner.y = 96
 spinner.z = 100
 
 ScrollView = new ScrollComponent
-	parent: FrameDevice
+	parent: Apple_iPhone_X
 	size: Screen.size
 	scrollHorizontal: false
 	clip: false
 	contentInset:
-		top: -400
-		bottom: -400
+		top: - insetDistance
+		bottom: - insetDistance
 	
 gradient.parent = ScrollView.content
-spinner.parent = FrameDevice
+spinner.parent = Apple_iPhone_X
 
 gradient.states.loading =
-	y: 100
-	
+	y: pullToRefreshDistance
+	animationOptions:
+		time: .2
+
 gradient.states.default =
 	y: 0
 	animationOptions:
 		time: 0.2
-
+		
+#Pull to refresh
 ScrollView.onScrollEnd ->
-	
 	# If dragged beyond 100 pixels, start loading animation
-	if ScrollView.scrollY < -100
+	if ScrollView.scrollY < - pullToRefreshDistance
 		loading = true
 		getWeatherData()
 		spinnerAnimation()
-# 		spinner.animate "loading"
 		gradient.animate "loading"
 		ScrollView.content.ignoreEvents = true 	
 		
-				# Simulate refresh with delay and animate back		
-		Utils.delay 4, ->
-# 			spinner.animate "hidden"
-			gradient.animate "default"
-		
 		# Stop loading animation and make feed scrollable again		
-		Utils.delay 4.4, ->
+		Utils.delay 4, ->
+			gradient.animate "default"
 			loading = false
 			stopSpinnerAnimation()
 			ScrollView.content.ignoreEvents = false
 
 ScrollView.onMove (event) ->
 	if !loading
-		range = [-400, -300]
-# 		Loader.opacity = Utils.modulate(event.y, range, [0, 1])
 		
 		for dash, i in spinner.children
-			start = i * 5 - 400
+			start = i * (pullToRefreshDistance/spinner.children.length) - insetDistance
 			dash.animate
 				opacity: Utils.modulate(event.y, [start, start + 5], [0, 1], true)
 				options: 
 					time: 0
-		
 
+# ⏱ Time Indicator
 Time_Indicator.backgroundColor = "rgba(255,255,255, 0.25)"
 Time_Indicator.padding = 5
 Time_Indicator.borderRadius = 6
+
+Utils.delay 1, ->
+	getWeatherData()
