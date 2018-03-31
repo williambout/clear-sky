@@ -7,6 +7,7 @@ Current_City.text = dataCurrentCity.city
 
 # ✖️ Variables
 loading = false
+spinnerLoop = null
 lines = []
 data = {}
 currentLine = {}
@@ -74,6 +75,24 @@ for i in [0...numberOfLines]
 		custom: data: {}
 	lines.push(line)
 
+#Spinner
+spinnerAnimation = ->
+	spinnerLoop = spinner.animate
+		rotation: 360
+		options:
+			time: 1
+			curve: Bezier.linear
+
+	spinnerLoop.on Events.AnimationEnd, ->
+		spinnerLoop.restart()
+		
+stopSpinnerAnimation = ->
+	spinner.animate
+		scale: 0
+		opacity: 0
+		
+	spinnerLoop.stop()
+
 Utils.delay 1, ->
 	getWeatherData()
 
@@ -116,7 +135,7 @@ spinner.y = 96
 spinner.z = 100
 
 ScrollView = new ScrollComponent
-	parent: Apple_iPhone_X
+	parent: FrameDevice
 	size: Screen.size
 	scrollHorizontal: false
 	clip: false
@@ -125,7 +144,7 @@ ScrollView = new ScrollComponent
 		bottom: -400
 	
 gradient.parent = ScrollView.content
-spinner.parent = Apple_iPhone_X
+spinner.parent = FrameDevice
 
 gradient.states.loading =
 	y: 100
@@ -141,7 +160,7 @@ ScrollView.onScrollEnd ->
 	if ScrollView.scrollY < -100
 		loading = true
 		getWeatherData()
-# 		loadAnimation()
+		spinnerAnimation()
 # 		spinner.animate "loading"
 		gradient.animate "loading"
 		ScrollView.content.ignoreEvents = true 	
@@ -154,7 +173,7 @@ ScrollView.onScrollEnd ->
 		# Stop loading animation and make feed scrollable again		
 		Utils.delay 4.4, ->
 			loading = false
-# 			stopLoadAnimation()
+			stopSpinnerAnimation()
 			ScrollView.content.ignoreEvents = false
 
 ScrollView.onMove (event) ->
