@@ -6,6 +6,7 @@ dataCurrentCity = JSON.parse Utils.domLoadDataSync "https://freegeoip.net/json/"
 Current_City.text = dataCurrentCity.city
 
 # ✖️ Variables
+loading = false
 lines = []
 data = {}
 currentLine = {}
@@ -59,7 +60,7 @@ linesContainer = new Layer
 	opacity: 0.5
 	backgroundColor: "transparent"
 	
-numberOfLines = Math.floor availableWidth/16
+numberOfLines = Utils.round(availableWidth/16)
 
 for i in [0...numberOfLines]
 	line = new Layer
@@ -88,10 +89,10 @@ linesContainer.on Events.TouchMove, (event, layer) ->
 	else
 		x_position = Events.touchEvent(event).clientX/window.devicePixelRatio
 			
-	indexCurrentLine = Math.floor x_position/numberOfLines
+	indexCurrentLine = Utils.round(x_position/numberOfLines)
 	currentLine = lines[indexCurrentLine]
 	
-	probability_value_percentage = Math.floor currentLine.custom.data.precipProbability * 100
+	probability_value_percentage = Utils.round(currentLine.custom.data.precipProbability * 100)
 	probability_value.text = probability_value_percentage + "%"
 	
 	end = moment.unix(currentLine.custom.data.time)
@@ -110,7 +111,9 @@ linesContainer.on Events.TouchMove, (event, layer) ->
 				time: .2
 
 gradient.height = Screen.height + 800
-info.y = 42 + 400
+info.y = 77 + 400
+spinner.y = 96
+spinner.z = 100
 
 ScrollView = new ScrollComponent
 	parent: Apple_iPhone_X
@@ -122,10 +125,49 @@ ScrollView = new ScrollComponent
 		bottom: -400
 	
 gradient.parent = ScrollView.content
+spinner.parent = Apple_iPhone_X
+
+gradient.states.loading =
+	y: 100
+	
+gradient.states.default =
+	y: 0
+	animationOptions:
+		time: 0.2
+
+ScrollView.onScrollEnd ->
+	
+	# If dragged beyond 100 pixels, start loading animation
+	if ScrollView.scrollY < -100
+		loading = true
+		getWeatherData()
+# 		loadAnimation()
+# 		spinner.animate "loading"
+		gradient.animate "loading"
+		ScrollView.content.ignoreEvents = true 	
+		
+				# Simulate refresh with delay and animate back		
+		Utils.delay 4, ->
+# 			spinner.animate "hidden"
+			gradient.animate "default"
+		
+		# Stop loading animation and make feed scrollable again		
+		Utils.delay 4.4, ->
+			loading = false
+# 			stopLoadAnimation()
+			ScrollView.content.ignoreEvents = false
 
 ScrollView.onMove (event) ->
-	if event.y > 100
-		getWeatherData()
+	if !loading
+		range = [-400, -300]
+# 		Loader.opacity = Utils.modulate(event.y, range, [0, 1])
+		
+		for dash, i in spinner.children
+			start = i * 5 - 400
+			dash.animate
+				opacity: Utils.modulate(event.y, [start, start + 5], [0, 1], true)
+				options: 
+					time: 0
 		
 
 Time_Indicator.backgroundColor = "rgba(255,255,255, 0.25)"
