@@ -1393,11 +1393,11 @@
                     "blur" : 12,
                     "blurEnabled" : 0,
                     "blurType" : "layer",
-                    "bottom" : 46,
+                    "bottom" : 22,
                     "brightness" : 100,
                     "brightnessEnabled" : 0,
-                    "centerAnchorX" : 0.58333333333333337,
-                    "centerAnchorY" : 0.75438596491228072,
+                    "centerAnchorX" : 0.089622641509433956,
+                    "centerAnchorY" : 0.85964912280701755,
                     "constraintsLocked" : true,
                     "contrast" : 200,
                     "contrastEnabled" : -1,
@@ -1414,7 +1414,7 @@
                     "id" : "r4x6kgicG",
                     "invert" : 48,
                     "invertEnabled" : -1,
-                    "left" : 142,
+                    "left" : 0,
                     "locked" : false,
                     "name" : "Time Indicator",
                     "opacity" : 1,
@@ -1447,42 +1447,42 @@
                           ],
                           "inlineStyleRanges" : [
                             {
-                              "length" : 10,
+                              "length" : 6,
                               "offset" : 0,
                               "style" : "SIZE:17"
                             },
                             {
-                              "length" : 10,
+                              "length" : 6,
                               "offset" : 0,
                               "style" : "LETTERSPACING:-0.4"
                             },
                             {
-                              "length" : 10,
+                              "length" : 6,
                               "offset" : 0,
                               "style" : "ALIGN:left"
                             },
                             {
-                              "length" : 10,
+                              "length" : 6,
                               "offset" : 0,
                               "style" : "COLOR:hsl(0, 0%, 100%)"
                             },
                             {
-                              "length" : 10,
+                              "length" : 6,
                               "offset" : 0,
                               "style" : "FONT:__SF-UI-Text-Medium__"
                             }
                           ],
                           "key" : "3p505",
-                          "text" : "10 minutes",
+                          "text" : "+00:10",
                           "type" : "unstyled"
                         }
                       ],
                       "cached" : {
-                        "html" : "<span data-offset-key=\"3p505-0-0\" style=\"tab-size:4;font-family:&quot;.SFNSText-Medium&quot;, &quot;SFProText-Medium&quot;, &quot;SFUIText-Medium&quot;, &quot;.SFUIText-Medium&quot;, sans-serif;-webkit-text-fill-color:hsl(0, 0%, 100%);font-size:17px;letter-spacing:-0.4px;line-height:1.2\"><span data-text=\"true\">10 minutes<\/span><\/span>",
+                        "html" : "<span data-offset-key=\"3p505-0-0\" style=\"tab-size:4;font-family:&quot;.SFNSText-Medium&quot;, &quot;SFProText-Medium&quot;, &quot;SFUIText-Medium&quot;, &quot;.SFUIText-Medium&quot;, sans-serif;-webkit-text-fill-color:hsl(0, 0%, 100%);font-size:17px;letter-spacing:-0.4px;line-height:1.2\"><span data-text=\"true\">+00:10<\/span><\/span>",
                         "os" : "10_13",
                         "size" : {
                           "height" : 20,
-                          "width" : 87
+                          "width" : 57
                         },
                         "width" : 0
                       },
@@ -1493,7 +1493,7 @@
                     "targetName" : "Time_Indicator",
                     "top" : null,
                     "visible" : true,
-                    "width" : 87,
+                    "width" : 57,
                     "widthFactor" : null
                   }
                 ],

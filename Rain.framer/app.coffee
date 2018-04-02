@@ -92,7 +92,10 @@ linesContainer.on Events.TouchMove, (event, layer) ->
 	probability_value.text = probability_value_percentage + "%"
 	
 	end = moment.unix(currentLine.custom.data.time)
-	Time_Indicator.text =  moment(end).fromNow(true)
+	
+	duration = moment().diff(end, 'minutes')
+	Time_Indicator.text =  "+ "+ duration
+	
 	
 	currentLine.animate
 		backgroundColor: "rgba(255,255,255, 0.95)"
@@ -197,9 +200,6 @@ ScrollView.onMove (event) ->
 					time: 0
 
 # ⏱ Time Indicator
-Time_Indicator.backgroundColor = "rgba(255,255,255, 0.25)"
-Time_Indicator.padding = 5
-Time_Indicator.borderRadius = 6
 
 Utils.delay 1, ->
 	getWeatherData()
