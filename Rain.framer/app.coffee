@@ -10,7 +10,7 @@ loading = false
 spinnerLoop = null
 pullToRefreshDistance = 140
 pullToRefreshDistanceLoading = 140
-insetDistance = 400
+insetDistance = 0
 lines = []
 data = {}
 currentLine = {}
@@ -56,13 +56,14 @@ getWeatherData = () ->
 			height: newHeight
 
 # 📊 Lines
+
 linesContainer = new Layer
 	x: container_margins
 	y: Screen.height - (container_margins + container_height)
 	width: availableWidth
 	height: container_height
-	opacity: 0.5
 	backgroundColor: "transparent"
+	index: 10
 	
 numberOfLines = Utils.round(availableWidth/16)
 
@@ -145,22 +146,27 @@ stopSpinnerAnimation = ->
 	spinnerLoop.stop()
 
 #📱 ScrollView
-gradient.height = Screen.height + 2 * insetDistance
-info.y = 77 + insetDistance
+insetDistance = 400
 spinner.y = 96
-spinner.z = 100
+spinner.index = 100
+
+WeatherScreen = new Layer
+	size: Screen.size
 
 ScrollView = new ScrollComponent
-	parent: Apple_iPhone_X
+	parent: WeatherScreen
 	size: Screen.size
+	index: 1
 	scrollHorizontal: false
-	clip: false
-	contentInset:
+
+gradient.height = Screen.height * 2
+gradient.parent = ScrollView.content
+spinner.parent = WeatherScreen
+linesContainer.parent = WeatherScreen
+
+ScrollView.contentInset =
 		top: - insetDistance
 		bottom: - insetDistance
-	
-gradient.parent = ScrollView.content
-spinner.parent = Apple_iPhone_X
 
 gradient.states.loading =
 	y: pullToRefreshDistance
@@ -200,6 +206,28 @@ ScrollView.onMove (event) ->
 					time: 0
 
 # ⏱ Time Indicator
+
+Time_Indicator.backgroundColor = 'rgba(255,255,255, 0.3)'
+Time_Indicator.padding =
+	top: 4
+	bottom: 4
+	left: 7
+	right: 7
+Time_Indicator.y = 190
+Time_Indicator.borderRadius = 6
+
+flow = new FlowComponent
+ 
+flow.showNext(WeatherScreen, animate: false)
+
+#Settings
+
+settings.onClick (event, layer) ->
+	flow.showOverlayBottom(SettingsScreen, animate: true)
+	
+settingsClose.onClick (event, layer) ->
+	flow.showPrevious()
+	
 
 Utils.delay 1, ->
 	getWeatherData()
