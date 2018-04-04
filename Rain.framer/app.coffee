@@ -1,3 +1,4 @@
+InputModule = require "input-framer/input"
 {moment} = require "Moment"
 
 # 🏙 Geolocalisation
@@ -159,14 +160,9 @@ ScrollView = new ScrollComponent
 	index: 1
 	scrollHorizontal: false
 
-gradient.height = Screen.height * 2
 gradient.parent = ScrollView.content
 spinner.parent = WeatherScreen
 linesContainer.parent = WeatherScreen
-
-ScrollView.contentInset =
-		top: - insetDistance
-		bottom: - insetDistance
 
 gradient.states.loading =
 	y: pullToRefreshDistance
@@ -218,7 +214,8 @@ Time_Indicator.borderRadius = 6
 
 flow = new FlowComponent
  
-flow.showNext(WeatherScreen, animate: false)
+# flow.showNext(WeatherScreen, animate: false)
+flow.showNext(SettingsScreen, animate: false)
 
 #Settings
 
@@ -227,6 +224,18 @@ settings.onClick (event, layer) ->
 	
 settingsClose.onClick (event, layer) ->
 	flow.showPrevious()
+	
+input = new InputModule.Input
+	placeholder: "Custom Location"
+	placeholderColor: "#777777"
+	backgroundColor: "transparent"
+	padding: "0 16"
+	fontSize: 17
+	fontWeight: 400
+	lineHeight: 1.2
+	letterSpacing: 10
+	height: 48
+	parent: Custom_Location_Container
 	
 
 Utils.delay 1, ->
