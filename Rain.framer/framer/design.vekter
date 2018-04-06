@@ -1095,47 +1095,47 @@
                           ],
                           "inlineStyleRanges" : [
                             {
-                              "length" : 13,
+                              "length" : 8,
                               "offset" : 0,
                               "style" : "ALIGN:left"
                             },
                             {
-                              "length" : 13,
+                              "length" : 8,
                               "offset" : 0,
                               "style" : "FONT:__SF-UI-Text-Medium__"
                             },
                             {
-                              "length" : 13,
+                              "length" : 8,
                               "offset" : 0,
                               "style" : "LETTERSPACING:-1.1"
                             },
                             {
-                              "length" : 13,
+                              "length" : 8,
                               "offset" : 0,
                               "style" : "LINEHEIGHT:1.2"
                             },
                             {
-                              "length" : 13,
+                              "length" : 8,
                               "offset" : 0,
                               "style" : "SIZE:20"
                             },
                             {
-                              "length" : 13,
+                              "length" : 8,
                               "offset" : 0,
                               "style" : "COLOR:hsl(0, 0%, 100%)"
                             }
                           ],
                           "key" : "3p505",
-                          "text" : "San Francisco",
+                          "text" : "Location",
                           "type" : "unstyled"
                         }
                       ],
                       "cached" : {
-                        "html" : "<span data-offset-key=\"3p505-0-0\" style=\"tab-size:4;font-family:&quot;.SFNSText-Medium&quot;, &quot;SFProText-Medium&quot;, &quot;SFUIText-Medium&quot;, &quot;.SFUIText-Medium&quot;, sans-serif;-webkit-text-fill-color:hsl(0, 0%, 100%);font-size:20px;letter-spacing:-1.1px;line-height:1.2\"><span data-text=\"true\">San Francisco<\/span><\/span>",
+                        "html" : "<span data-offset-key=\"3p505-0-0\" style=\"tab-size:4;font-family:&quot;.SFNSText-Medium&quot;, &quot;SFProText-Medium&quot;, &quot;SFUIText-Medium&quot;, &quot;.SFUIText-Medium&quot;, sans-serif;-webkit-text-fill-color:hsl(0, 0%, 100%);font-size:20px;letter-spacing:-1.1px;line-height:1.2\"><span data-text=\"true\">Location<\/span><\/span>",
                         "os" : "10_13",
                         "size" : {
                           "height" : 24,
-                          "width" : 123
+                          "width" : 75
                         },
                         "width" : 0
                       },
@@ -1146,7 +1146,7 @@
                     "targetName" : "Current_City",
                     "top" : null,
                     "visible" : true,
-                    "width" : 123,
+                    "width" : 75,
                     "widthFactor" : null
                   },
                   {
@@ -1208,8 +1208,8 @@
                               "COLOR:rgb(255, 255, 255)",
                               "SIZE:44",
                               "LETTERSPACING:0.5",
-                              "ALIGN:center",
-                              "FONT:__SF-UI-Display-Bold__"
+                              "FONT:__SF-UI-Display-Bold__",
+                              "ALIGN:left"
                             ]
                           },
                           "depth" : 0,
@@ -1218,42 +1218,42 @@
                           ],
                           "inlineStyleRanges" : [
                             {
-                              "length" : 10,
+                              "length" : 7,
                               "offset" : 0,
                               "style" : "COLOR:rgb(255, 255, 255)"
                             },
                             {
-                              "length" : 10,
+                              "length" : 7,
                               "offset" : 0,
                               "style" : "SIZE:44"
                             },
                             {
-                              "length" : 10,
+                              "length" : 7,
                               "offset" : 0,
                               "style" : "LETTERSPACING:0.5"
                             },
                             {
-                              "length" : 10,
-                              "offset" : 0,
-                              "style" : "ALIGN:center"
-                            },
-                            {
-                              "length" : 10,
+                              "length" : 7,
                               "offset" : 0,
                               "style" : "FONT:__SF-UI-Display-Bold__"
+                            },
+                            {
+                              "length" : 7,
+                              "offset" : 0,
+                              "style" : "ALIGN:left"
                             }
                           ],
                           "key" : "ct2a2",
-                          "text" : "Light Rain",
+                          "text" : "Loading",
                           "type" : "unstyled"
                         }
                       ],
                       "cached" : {
-                        "html" : "<span data-offset-key=\"ct2a2-0-0\" style=\"tab-size:4;font-family:&quot;.SFNSDisplay-Bold&quot;, &quot;SFProDisplay-Bold&quot;, &quot;SFUIDisplay-Bold&quot;, &quot;.SFUIDisplay-Bold&quot;, sans-serif;-webkit-text-fill-color:rgb(255, 255, 255);font-size:44px;letter-spacing:0.5px;line-height:1.2\"><span data-text=\"true\">Light Rain<\/span><\/span>",
+                        "html" : "<span data-offset-key=\"ct2a2-0-0\" style=\"tab-size:4;font-family:&quot;.SFNSDisplay-Bold&quot;, &quot;SFProDisplay-Bold&quot;, &quot;SFUIDisplay-Bold&quot;, &quot;.SFUIDisplay-Bold&quot;, sans-serif;-webkit-text-fill-color:rgb(255, 255, 255);font-size:44px;letter-spacing:0.5px;line-height:1.2\"><span data-text=\"true\">Loading<\/span><\/span>",
                         "os" : "10_13",
                         "size" : {
                           "height" : 52,
-                          "width" : 205
+                          "width" : 166
                         },
                         "width" : 0
                       },
@@ -1264,7 +1264,7 @@
                     "targetName" : "current_weather",
                     "top" : null,
                     "visible" : true,
-                    "width" : 205,
+                    "width" : 166,
                     "widthFactor" : null
                   },
                   {
@@ -1323,12 +1323,12 @@
                         {
                           "data" : {
                             "emptyStyle" : [
-                              "ALIGN:center",
                               "LETTERSPACING:0.5",
                               "LINEHEIGHT:1.2",
                               "SIZE:44",
                               "COLOR:hsla(0, 0%, 100%, 0.5)",
-                              "FONT:__SF-UI-Text-Bold__"
+                              "ALIGN:left",
+                              "FONT:__SF-UI-Display-Bold__"
                             ]
                           },
                           "depth" : 0,
@@ -1337,47 +1337,47 @@
                           ],
                           "inlineStyleRanges" : [
                             {
-                              "length" : 3,
-                              "offset" : 0,
-                              "style" : "ALIGN:center"
-                            },
-                            {
-                              "length" : 3,
+                              "length" : 2,
                               "offset" : 0,
                               "style" : "LETTERSPACING:0.5"
                             },
                             {
-                              "length" : 3,
+                              "length" : 2,
                               "offset" : 0,
                               "style" : "LINEHEIGHT:1.2"
                             },
                             {
-                              "length" : 3,
+                              "length" : 2,
                               "offset" : 0,
                               "style" : "SIZE:44"
                             },
                             {
-                              "length" : 3,
+                              "length" : 2,
                               "offset" : 0,
                               "style" : "COLOR:hsla(0, 0%, 100%, 0.5)"
                             },
                             {
-                              "length" : 3,
+                              "length" : 2,
                               "offset" : 0,
-                              "style" : "FONT:__SF-UI-Text-Bold__"
+                              "style" : "ALIGN:left"
+                            },
+                            {
+                              "length" : 2,
+                              "offset" : 0,
+                              "style" : "FONT:__SF-UI-Display-Bold__"
                             }
                           ],
                           "key" : "ct2a2",
-                          "text" : "33%",
+                          "text" : "-%",
                           "type" : "unstyled"
                         }
                       ],
                       "cached" : {
-                        "html" : "<span data-offset-key=\"ct2a2-0-0\" style=\"tab-size:4;font-family:&quot;.SFNSText-Bold&quot;, &quot;SFProText-Bold&quot;, &quot;SFUIText-Bold&quot;, &quot;.SFUIText-Bold&quot;, sans-serif;-webkit-text-fill-color:hsla(0, 0%, 100%, 0.5);font-size:44px;letter-spacing:0.5px;line-height:1.2\"><span data-text=\"true\">33%<\/span><\/span>",
+                        "html" : "<span data-offset-key=\"ct2a2-0-0\" style=\"tab-size:4;font-family:&quot;.SFNSDisplay-Bold&quot;, &quot;SFProDisplay-Bold&quot;, &quot;SFUIDisplay-Bold&quot;, &quot;.SFUIDisplay-Bold&quot;, sans-serif;-webkit-text-fill-color:hsla(0, 0%, 100%, 0.5);font-size:44px;letter-spacing:0.5px;line-height:1.2\"><span data-text=\"true\">-%<\/span><\/span>",
                         "os" : "10_13",
                         "size" : {
                           "height" : 52,
-                          "width" : 99
+                          "width" : 61
                         },
                         "width" : 0
                       },
@@ -1388,7 +1388,7 @@
                     "targetName" : "probability_value",
                     "top" : null,
                     "visible" : true,
-                    "width" : 99,
+                    "width" : 61,
                     "widthFactor" : null
                   },
                   {
@@ -1634,8 +1634,8 @@
               "__class" : "LinearGradient",
               "alpha" : 1,
               "angle" : 180,
-              "end" : "hsl(194, 74%, 90%)",
-              "start" : "hsl(204, 100%, 65%)"
+              "end" : "hsl(0, 0%, 66%)",
+              "start" : "hsl(0, 0%, 69%)"
             },
             "fillImage" : null,
             "fillImagePixelHeight" : null,

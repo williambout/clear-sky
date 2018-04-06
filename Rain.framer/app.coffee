@@ -7,6 +7,7 @@ dataCurrentCity = JSON.parse Utils.domLoadDataSync "https://freegeoip.net/json/"
 Current_City.text = dataCurrentCity.city
 
 # ✖️ Variables
+
 loading = false
 spinnerLoop = null
 pullToRefreshDistance = 140
@@ -55,6 +56,9 @@ getWeatherData = () ->
 		lines[i].animate
 			y: 250 - newHeight
 			height: newHeight
+			options:
+				delay: i/20
+
 
 # 📊 Lines
 
@@ -145,8 +149,9 @@ stopSpinnerAnimation = ->
 			opacity: 1
 
 	spinnerLoop.stop()
-
+	
 #📱 ScrollView
+
 insetDistance = 400
 spinner.y = 96
 spinner.index = 100
@@ -213,11 +218,8 @@ Time_Indicator.y = 190
 Time_Indicator.borderRadius = 6
 
 flow = new FlowComponent
- 
-# flow.showNext(WeatherScreen, animate: false)
-flow.showNext(SettingsScreen, animate: false)
 
-#Settings
+# ⚙️ Settings
 
 settings.onClick (event, layer) ->
 	flow.showOverlayBottom(SettingsScreen, animate: true)
@@ -236,7 +238,9 @@ input = new InputModule.Input
 	letterSpacing: 10
 	height: 48
 	parent: Custom_Location_Container
-	
+
+flow.showNext(WeatherScreen, animate: false)
+# flow.showNext(SettingsScreen, animate: false)
 
 Utils.delay 1, ->
 	getWeatherData()
