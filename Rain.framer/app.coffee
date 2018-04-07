@@ -1,4 +1,3 @@
-InputModule = require "input-framer/input"
 {moment} = require "Moment"
 
 # 🏙 Geolocalisation
@@ -99,9 +98,14 @@ linesContainer.on Events.TouchMove, (event, layer) ->
 	
 	end = moment.unix(currentLine.custom.data.time)
 	
-	duration = moment().diff(end, 'minutes')
-	Time_Indicator.text =  "+ "+ duration
+	duration = moment.duration(moment().diff(end, 'seconds'), 'seconds')
+	hours = Utils.round(duration.asHours())
+	mins  = Math.abs(Utils.round(duration.asMinutes()) - hours * 60)
 	
+	prettyHours = Math.abs(hours).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
+	prettyMins = mins.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
+	
+	Time_Indicator.text =  "+ "+ prettyHours + ":" + prettyMins
 	
 	currentLine.animate
 		backgroundColor: "rgba(255,255,255, 0.95)"
@@ -227,17 +231,65 @@ settings.onClick (event, layer) ->
 settingsClose.onClick (event, layer) ->
 	flow.showPrevious()
 	
-input = new InputModule.Input
-	placeholder: "Custom Location"
-	placeholderColor: "#777777"
-	backgroundColor: "transparent"
-	padding: "0 16"
-	fontSize: 17
-	fontWeight: 400
-	lineHeight: 1.2
-	letterSpacing: 10
-	height: 48
-	parent: Custom_Location_Container
+activeTemperatureButton = 'SettingsButtonC'
+activeGradient = SettingsButtonC.gradient
+inactiveGradient = SettingsButtonF.gradient
+buttons = [SettingsButtonC, SettingsButtonF]
+
+for button in buttons
+
+	button.onClick (event, layer) ->
+		if layer.name != activeTemperatureButton
+			activeTemperatureButton = layer.name
+			layer.children[0].animate
+				color: 'rgba(0,0,0, .6)'
+				options: 
+					time: .2
+			layer.children[1].animate
+				backgroundColor: 'rgba(0,0,0, .5)'
+				options: 
+					time: .2
+			layer.children[1].children[0].animate
+				color: '#2772EE'
+				options: 
+					time: .2
+			layer.animate
+				gradient: activeGradient
+				options: 
+					time: .2
+			
+			inactiveButtons = buttons.filter (button) ->
+				button.name != activeTemperatureButton
+				
+			for button in inactiveButtons
+				button.children[0].animate
+					color: '#777777'
+					options: 
+						time: .2
+				button.children[1].animate
+					backgroundColor: 'rgba(255,255,255, .3)'
+					options: 
+						time: .2
+				button.children[1].children[0].animate
+					color: '#333333'
+					options: 
+						time: .2
+				button.animate
+					gradient: inactiveGradient
+					options: 
+						time: .2
+	
+	button.onTouchStart (event, layer) ->
+		layer.animate
+			scale: 0.98
+			options: 
+				time: .2
+			
+	button.onTouchEnd (event, layer) ->
+		layer.animate
+			scale: 1
+			options: 
+				time: .2
 
 flow.showNext(WeatherScreen, animate: false)
 # flow.showNext(SettingsScreen, animate: false)
