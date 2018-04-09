@@ -248,6 +248,7 @@ Time_Indicator.classList.add("pnum")
 css = """
 .pnum {
 	font-feature-settings: "tnum";
+	width: auto!important;
 }
 """
  
