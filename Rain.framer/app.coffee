@@ -1,7 +1,16 @@
 {moment} = require "Moment"
 
 # 🏙 Geolocalisation
+supportedContries = ['United States', 'United Kingdom']
 dataCurrentCity = JSON.parse Utils.domLoadDataSync "https://freegeoip.net/json/"
+
+# Use San Francisco if current location is not supported by Dark Sky
+if !supportedContries.includes(dataCurrentCity.country_name)
+	dataCurrentCity = {
+		city: 'San Francisco'
+		longitude: -122.419416
+		latitude: 37.774929
+	}
 
 Current_City.text = dataCurrentCity.city
 
@@ -39,15 +48,17 @@ getWeatherData = () ->
 	data = JSON.parse Utils.domLoadDataSync getData
 	current_weather.text = data.currently.summary
 	probability_value.text = data.currently.precipProbability * 100 + "%"
-	data.hourly.data.shift()
 	every5minutes = data.minutely.data.filter (x, i) -> i % 5 == 0
-	linesData = every5minutes.concat data.hourly.data
+	hourly = data.hourly.data.filter (x, i) -> x.time > (moment().unix() + 60*60)
+	linesData = every5minutes.concat hourly
 	
-	current_gradient = gradients.find (gradient) -> 
-		return gradient.icon == data.currently.icon;
+	current_gradient = gradients.find (gradient) -> gradient.icon == data.currently.icon
 
 	gradient.animate
 		gradient: {start: current_gradient.start, end: current_gradient.end}
+	
+	for item, index in linesData
+		console.log moment.unix(item.time).format('h:mm')
 	
 	for i in [0...numberOfLines]
 		newHeight = Utils.modulate(linesData[i].precipProbability, [0,1], [7, 250])
@@ -83,7 +94,14 @@ for i in [0...numberOfLines]
 		custom: data: {}
 	lines.push(line)
 
-#Lines Hover
+Time_Indicator.opacity = 0
+
+linesContainer.on Events.TouchStart, (event, layer) ->
+	Time_Indicator.animate
+		opacity: 1
+		options:
+			time: .2
+
 linesContainer.on Events.TouchMove, (event, layer) ->
 	if Utils.isDesktop()
 		x_position = event.point.x
@@ -98,11 +116,11 @@ linesContainer.on Events.TouchMove, (event, layer) ->
 	
 	end = moment.unix(currentLine.custom.data.time)
 	
-	duration = moment.duration(moment().diff(end, 'seconds'), 'seconds')
-	hours = Utils.round(duration.asHours())
-	mins  = Math.abs(Utils.round(duration.asMinutes()) - hours * 60)
-	
-	prettyHours = Math.abs(hours).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
+	duration = moment.duration(end.diff(moment(), 'seconds'), 'seconds')
+	hours = Math.floor(duration.asHours())
+	mins = Math.floor(duration.asMinutes()) - (hours * 60)
+		
+	prettyHours = hours.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
 	prettyMins = mins.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
 	
 	Time_Indicator.text =  "+ "+ prettyHours + ":" + prettyMins
@@ -119,7 +137,12 @@ linesContainer.on Events.TouchMove, (event, layer) ->
 			options:
 				time: .2
 			
-linesContainer.on Events.MouseOut, () ->
+linesContainer.on Events.TouchEnd, () ->
+	Time_Indicator.animate
+		opacity: 0
+		options:
+			time: .2
+
 	currentLine.animate
 		backgroundColor: 'rgba(0,0,0, 0.25)'
 		options:
@@ -221,6 +244,15 @@ Time_Indicator.padding =
 Time_Indicator.y = 190
 Time_Indicator.borderRadius = 6
 
+Time_Indicator.classList.add("pnum")
+css = """
+.pnum {
+	font-feature-settings: "tnum";
+}
+"""
+ 
+Utils.insertCSS(css)
+
 flow = new FlowComponent
 
 # ⚙️ Settings
@@ -294,5 +326,4 @@ for button in buttons
 flow.showNext(WeatherScreen, animate: false)
 # flow.showNext(SettingsScreen, animate: false)
 
-Utils.delay 1, ->
-	getWeatherData()
+getWeatherData()
