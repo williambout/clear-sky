@@ -2,15 +2,29 @@
 
 # 🏙 Geolocalisation
 supportedContries = ['United States', 'United Kingdom']
+
 dataCurrentCity = JSON.parse Utils.domLoadDataSync "https://freegeoip.net/json/"
 
 # Use San Francisco if current location is not supported by Dark Sky
 if !supportedContries.includes(dataCurrentCity.country_name)
 	dataCurrentCity = {
-		city: 'San Francisco'
 		longitude: -122.419416
 		latitude: 37.774929
 	}
+
+# Montreal
+# dataCurrentCity = {
+# 	city: 'Montreal'
+# 	longitude: -73.567256
+# 	latitude: 45.5016889
+# }
+
+# New York
+# dataCurrentCity = {
+# 	city: 'New York'
+# 	longitude: -73.974187
+# 	latitude: 40.771133
+# }
 
 Current_City.text = dataCurrentCity.city
 
