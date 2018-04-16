@@ -52,13 +52,22 @@ gradients = [
 	{icon: "partly-cloudy-night", start: Partly_Cloudy_Night.gradient.start, end: Partly_Cloudy_Night.gradient.end}
 ]
 
+Time_Indicator.classList.add("pnum")
+probability_value.classList.add("pnum")
+css = """
+.pnum {
+	font-feature-settings: "tnum";
+	width: auto!important;
+}
+"""
+
 container_margins = 40
 container_height = 250
 availableWidth = Screen.width - 2 * container_margins
 
 # ⛅️ Update Weather Data
 getWeatherData = () ->
-	getData = "https://crossorigin.me/https://api.darksky.net/forecast/a529960936818c18e22f793c463c8e23/"+dataCurrentCity.latitude+","+dataCurrentCity.longitude
+	getData = "https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/a529960936818c18e22f793c463c8e23/"+dataCurrentCity.latitude+","+dataCurrentCity.longitude
 	data = JSON.parse Utils.domLoadDataSync getData
 	current_weather.text = data.currently.summary
 	probability_value.text = data.currently.precipProbability * 100 + "%"
@@ -81,11 +90,11 @@ getWeatherData = () ->
 			y: 250 - newHeight
 			height: newHeight
 			options:
-				delay: i/20
+				curve: Spring(tension: 200, friction: 22)
+				delay: i/30
 
 
 # 📊 Lines
-
 linesContainer = new Layer
 	x: container_margins
 	y: Screen.height - (container_margins + container_height)
@@ -109,14 +118,19 @@ for i in [0...numberOfLines]
 	lines.push(line)
 
 Time_Indicator.opacity = 0
+isDraging = false
 
 linesContainer.on Events.TouchStart, (event, layer) ->
+	isDraging = true
 	Time_Indicator.animate
 		opacity: 1
 		options:
 			time: .2
 
 linesContainer.on Events.TouchMove, (event, layer) ->
+	if !isDraging
+		return
+
 	if Utils.isDesktop()
 		x_position = event.point.x
 	else
@@ -137,7 +151,10 @@ linesContainer.on Events.TouchMove, (event, layer) ->
 	prettyHours = hours.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
 	prettyMins = mins.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
 	
-	Time_Indicator.text =  "+ "+ prettyHours + ":" + prettyMins
+	if (prettyHours < 0)
+		Time_Indicator.text = moment().format('HH:mm')
+	else
+		Time_Indicator.text =  "+ "+ prettyHours + ":" + prettyMins
 	
 	currentLine.animate
 		backgroundColor: "rgba(255,255,255, 0.95)"
@@ -152,6 +169,7 @@ linesContainer.on Events.TouchMove, (event, layer) ->
 				time: .2
 			
 linesContainer.on Events.TouchEnd, () ->
+	isDraging = false
 	Time_Indicator.animate
 		opacity: 0
 		options:
@@ -161,6 +179,10 @@ linesContainer.on Events.TouchEnd, () ->
 		backgroundColor: 'rgba(0,0,0, 0.25)'
 		options:
 			time: .2
+			
+	currentLine = lines[0]
+	probability_value_percentage = Utils.round(currentLine.custom.data.precipProbability * 100)
+	probability_value.text = probability_value_percentage + "%"
 
 #⏳ Spinner
 spinnerAnimation = ->
@@ -190,9 +212,8 @@ stopSpinnerAnimation = ->
 			opacity: 1
 
 	spinnerLoop.stop()
-	
-#📱 ScrollView
 
+#📱 ScrollView
 insetDistance = 400
 spinner.y = 96
 spinner.index = 100
@@ -257,21 +278,12 @@ Time_Indicator.padding =
 	right: 7
 Time_Indicator.y = 190
 Time_Indicator.borderRadius = 6
-
-Time_Indicator.classList.add("pnum")
-css = """
-.pnum {
-	font-feature-settings: "tnum";
-	width: auto!important;
-}
-"""
  
 Utils.insertCSS(css)
 
 flow = new FlowComponent
 
 # ⚙️ Settings
-
 settings.onClick (event, layer) ->
 	flow.showOverlayBottom(SettingsScreen, animate: true)
 	
