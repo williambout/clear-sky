@@ -122,6 +122,7 @@ isDraging = false
 
 linesContainer.on Events.TouchStart, (event, layer) ->
 	isDraging = true
+	updateSelectedLine()
 	Time_Indicator.animate
 		opacity: 1
 		options:
@@ -130,7 +131,27 @@ linesContainer.on Events.TouchStart, (event, layer) ->
 linesContainer.on Events.TouchMove, (event, layer) ->
 	if !isDraging
 		return
+		
+	updateSelectedLine()
+			
+linesContainer.on Events.TouchEnd, () ->
+	isDraging = false
+	Time_Indicator.animate
+		opacity: 0
+		options:
+			time: .2
 
+	currentLine.animate
+		backgroundColor: 'rgba(0,0,0, 0.25)'
+		options:
+			time: .2
+			
+	currentLine = lines[0]
+	probability_value_percentage = Utils.round(currentLine.custom.data.precipProbability * 100)
+	probability_value.text = probability_value_percentage + "%"
+	
+	
+updateSelectedLine = () ->
 	if Utils.isDesktop()
 		x_position = event.point.x
 	else
@@ -167,22 +188,6 @@ linesContainer.on Events.TouchMove, (event, layer) ->
 			backgroundColor: "rgba(0,0,0, 0.25)"
 			options:
 				time: .2
-			
-linesContainer.on Events.TouchEnd, () ->
-	isDraging = false
-	Time_Indicator.animate
-		opacity: 0
-		options:
-			time: .2
-
-	currentLine.animate
-		backgroundColor: 'rgba(0,0,0, 0.25)'
-		options:
-			time: .2
-			
-	currentLine = lines[0]
-	probability_value_percentage = Utils.round(currentLine.custom.data.precipProbability * 100)
-	probability_value.text = probability_value_percentage + "%"
 
 #⏳ Spinner
 spinnerAnimation = ->
