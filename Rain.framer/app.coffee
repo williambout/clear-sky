@@ -30,6 +30,8 @@ Current_City.text = dataCurrentCity.city
 
 # ✖️ Variables
 
+Utils.insertCSS(css)
+flow = new FlowComponent
 loading = false
 spinnerLoop = null
 pullToRefreshDistance = 140
@@ -154,8 +156,13 @@ linesContainer.on Events.TouchEnd, () ->
 updateSelectedLine = () ->
 	if Utils.isDesktop()
 		x_position = event.point.x
+		y_position = event.point.y
 	else
 		x_position = Events.touchEvent(event).clientX/window.devicePixelRatio
+		y_position = Events.touchEvent(event).clientY/window.devicePixelRatio
+		
+	Time_Indicator.x = x_position
+	Time_Indicator.y = y_position - 80
 			
 	indexCurrentLine = Utils.round(x_position/numberOfLines)
 	currentLine = lines[indexCurrentLine]
@@ -272,21 +279,6 @@ ScrollView.onMove (event) ->
 				opacity: Utils.modulate(event.y, [start, start + 5], [0, 1], true)
 				options: 
 					time: 0
-
-# ⏱ Time Indicator
-
-Time_Indicator.backgroundColor = 'rgba(255,255,255, 0.3)'
-Time_Indicator.padding =
-	top: 4
-	bottom: 4
-	left: 7
-	right: 7
-Time_Indicator.y = 190
-Time_Indicator.borderRadius = 6
- 
-Utils.insertCSS(css)
-
-flow = new FlowComponent
 
 # ⚙️ Settings
 settings.onClick (event, layer) ->

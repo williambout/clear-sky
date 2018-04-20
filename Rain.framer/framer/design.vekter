@@ -1392,123 +1392,6 @@
                     "widthFactor" : null
                   },
                   {
-                    "__class" : "TextNode",
-                    "autoSize" : true,
-                    "blendingEnabled" : 0,
-                    "blendingMode" : "normal",
-                    "blur" : 12,
-                    "blurEnabled" : 0,
-                    "blurType" : "layer",
-                    "bottom" : 11,
-                    "brightness" : 100,
-                    "brightnessEnabled" : 0,
-                    "centerAnchorX" : 0.10062893081761007,
-                    "centerAnchorY" : 0.89912280701754388,
-                    "constraintsLocked" : true,
-                    "contrast" : 100,
-                    "contrastEnabled" : 0,
-                    "editable" : false,
-                    "exportOptions" : [
-
-                    ],
-                    "grayscale" : 0,
-                    "grayScaleEnabled" : 0,
-                    "height" : 24,
-                    "heightFactor" : null,
-                    "hueRotate" : 0,
-                    "hueRotateEnabled" : 0,
-                    "id" : "r4x6kgicG",
-                    "invert" : 0,
-                    "invertEnabled" : 0,
-                    "left" : 0,
-                    "locked" : false,
-                    "name" : "Time Indicator",
-                    "opacity" : 1,
-                    "parentid" : "VSYdyloUR",
-                    "right" : null,
-                    "rotation" : 0,
-                    "saturate" : 100,
-                    "saturateEnabled" : 0,
-                    "sepia" : 0,
-                    "sepiaEnabled" : 0,
-                    "shadows" : [
-
-                    ],
-                    "styledText" : {
-                      "__class" : "StyledTextDraft",
-                      "blocks" : [
-                        {
-                          "data" : {
-                            "emptyStyle" : [
-                              "ALIGN:left",
-                              "COLOR:hsl(0, 0%, 100%)",
-                              "FONT:__SF-UI-Text-Medium__",
-                              "LETTERSPACING:-1.1",
-                              "LINEHEIGHT:1.2",
-                              "SIZE:20"
-                            ]
-                          },
-                          "depth" : 0,
-                          "entityRanges" : [
-
-                          ],
-                          "inlineStyleRanges" : [
-                            {
-                              "length" : 6,
-                              "offset" : 0,
-                              "style" : "ALIGN:left"
-                            },
-                            {
-                              "length" : 6,
-                              "offset" : 0,
-                              "style" : "COLOR:hsl(0, 0%, 100%)"
-                            },
-                            {
-                              "length" : 6,
-                              "offset" : 0,
-                              "style" : "FONT:__SF-UI-Text-Medium__"
-                            },
-                            {
-                              "length" : 6,
-                              "offset" : 0,
-                              "style" : "LETTERSPACING:-1.1"
-                            },
-                            {
-                              "length" : 6,
-                              "offset" : 0,
-                              "style" : "LINEHEIGHT:1.2"
-                            },
-                            {
-                              "length" : 6,
-                              "offset" : 0,
-                              "style" : "SIZE:20"
-                            }
-                          ],
-                          "key" : "3p505",
-                          "text" : "+00:10",
-                          "type" : "unstyled"
-                        }
-                      ],
-                      "cached" : {
-                        "html" : "<span data-offset-key=\"3p505-0-0\" style=\"tab-size:4;font-family:&quot;.SFNSText-Medium&quot;, &quot;SFProText-Medium&quot;, &quot;SFUIText-Medium&quot;, &quot;.SFUIText-Medium&quot;, sans-serif;-webkit-text-fill-color:hsl(0, 0%, 100%);font-size:20px;letter-spacing:-1.1px;line-height:1.2\"><span data-text=\"true\">+00:10<\/span><\/span>",
-                        "os" : "10_13",
-                        "size" : {
-                          "height" : 24,
-                          "width" : 64
-                        },
-                        "width" : 0
-                      },
-                      "entityMap" : {
-
-                      }
-                    },
-                    "targetName" : "Time_Indicator",
-                    "top" : null,
-                    "visible" : true,
-                    "width" : 64,
-                    "widthFactor" : null
-                  },
-                  {
                     "__class" : "RectangleShapeNode",
                     "aspectRatioLocked" : false,
                     "boxShadows" : [
@@ -1616,6 +1499,123 @@
                 "top" : null,
                 "visible" : true,
                 "width" : 318,
+                "widthFactor" : null
+              },
+              {
+                "__class" : "TextNode",
+                "autoSize" : true,
+                "blendingEnabled" : 0,
+                "blendingMode" : "normal",
+                "blur" : 12,
+                "blurEnabled" : 0,
+                "blurType" : "layer",
+                "bottom" : 139,
+                "brightness" : 100,
+                "brightnessEnabled" : 0,
+                "centerAnchorX" : 0.48799999999999999,
+                "centerAnchorY" : 0.81403940886699511,
+                "constraintsLocked" : false,
+                "contrast" : 100,
+                "contrastEnabled" : 0,
+                "editable" : false,
+                "exportOptions" : [
+
+                ],
+                "grayscale" : 0,
+                "grayScaleEnabled" : 0,
+                "height" : 24,
+                "heightFactor" : null,
+                "hueRotate" : 0,
+                "hueRotateEnabled" : 0,
+                "id" : "r4x6kgicG",
+                "invert" : 0,
+                "invertEnabled" : 0,
+                "left" : 151,
+                "locked" : false,
+                "name" : "Time Indicator",
+                "opacity" : 1,
+                "parentid" : "SiE1LhoIE",
+                "right" : null,
+                "rotation" : 0,
+                "saturate" : 100,
+                "saturateEnabled" : 0,
+                "sepia" : 0,
+                "sepiaEnabled" : 0,
+                "shadows" : [
+
+                ],
+                "styledText" : {
+                  "__class" : "StyledTextDraft",
+                  "blocks" : [
+                    {
+                      "data" : {
+                        "emptyStyle" : [
+                          "ALIGN:left",
+                          "COLOR:hsl(0, 0%, 100%)",
+                          "FONT:__SF-UI-Text-Medium__",
+                          "LETTERSPACING:-1.1",
+                          "LINEHEIGHT:1.2",
+                          "SIZE:20"
+                        ]
+                      },
+                      "depth" : 0,
+                      "entityRanges" : [
+
+                      ],
+                      "inlineStyleRanges" : [
+                        {
+                          "length" : 6,
+                          "offset" : 0,
+                          "style" : "ALIGN:left"
+                        },
+                        {
+                          "length" : 6,
+                          "offset" : 0,
+                          "style" : "COLOR:hsl(0, 0%, 100%)"
+                        },
+                        {
+                          "length" : 6,
+                          "offset" : 0,
+                          "style" : "FONT:__SF-UI-Text-Medium__"
+                        },
+                        {
+                          "length" : 6,
+                          "offset" : 0,
+                          "style" : "LETTERSPACING:-1.1"
+                        },
+                        {
+                          "length" : 6,
+                          "offset" : 0,
+                          "style" : "LINEHEIGHT:1.2"
+                        },
+                        {
+                          "length" : 6,
+                          "offset" : 0,
+                          "style" : "SIZE:20"
+                        }
+                      ],
+                      "key" : "3p505",
+                      "text" : "+00:10",
+                      "type" : "unstyled"
+                    }
+                  ],
+                  "cached" : {
+                    "html" : "<span data-offset-key=\"3p505-0-0\" style=\"tab-size:4;font-family:&quot;.SFNSText-Medium&quot;, &quot;SFProText-Medium&quot;, &quot;SFUIText-Medium&quot;, &quot;.SFUIText-Medium&quot;, sans-serif;-webkit-text-fill-color:hsl(0, 0%, 100%);font-size:20px;letter-spacing:-1.1px;line-height:1.2\"><span data-text=\"true\">+00:10<\/span><\/span>",
+                    "os" : "10_13",
+                    "size" : {
+                      "height" : 24,
+                      "width" : 64
+                    },
+                    "width" : 0
+                  },
+                  "entityMap" : {
+
+                  }
+                },
+                "targetName" : "Time_Indicator",
+                "top" : null,
+                "visible" : true,
+                "width" : 64,
                 "widthFactor" : null
               }
             ],
