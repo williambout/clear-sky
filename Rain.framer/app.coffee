@@ -156,15 +156,18 @@ linesContainer.on Events.TouchEnd, () ->
 updateSelectedLine = () ->
 	if Utils.isDesktop()
 		x_position = event.point.x
-		y_position = event.point.y
+		y_position = event.point.y + linesContainer.y
 	else
-		x_position = Events.touchEvent(event).clientX/window.devicePixelRatio
+		x_position = Events.touchEvent(event).clientX/window.devicePixelRatio  - container_margins
 		y_position = Events.touchEvent(event).clientY/window.devicePixelRatio
 		
 	Time_Indicator.x = x_position
 	Time_Indicator.y = y_position - 80
 			
-	indexCurrentLine = Utils.round(x_position/numberOfLines)
+	indexCurrentLine = Utils.round((x_position - container_margins)/numberOfLines)
+	
+	
+	indexCurrentLine = Utils.round(Utils.modulate(x_position, [0, linesContainer.width], [0, numberOfLines - 1], true))
 	currentLine = lines[indexCurrentLine]
 	
 	probability_value_percentage = Utils.round(currentLine.custom.data.precipProbability * 100)
