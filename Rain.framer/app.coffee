@@ -1,5 +1,9 @@
 {moment} = require "Moment"
 
+## API KEYS
+
+apiKey = "a529960936818c18e22f793c463c8e23"
+
 # 🏙 Geolocalisation
 supportedContries = ['United States', 'United Kingdom']
 
@@ -11,6 +15,8 @@ if !supportedContries.includes(dataCurrentCity.country_name)
 		longitude: -122.419416
 		latitude: 37.774929
 	}
+
+#Debug
 
 # Montreal
 # dataCurrentCity = {
@@ -31,9 +37,9 @@ Current_City.text = dataCurrentCity.city
 # ✖️ Variables
 
 Utils.insertCSS(css)
-flow = new FlowComponent
 loading = false
 spinnerLoop = null
+lastUpdatedAt = null
 pullToRefreshDistance = 140
 pullToRefreshDistanceLoading = 140
 insetDistance = 0
@@ -69,7 +75,9 @@ availableWidth = Screen.width - 2 * container_margins
 
 # ⛅️ Update Weather Data
 getWeatherData = () ->
-	getData = "https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/a529960936818c18e22f793c463c8e23/"+dataCurrentCity.latitude+","+dataCurrentCity.longitude
+	lastUpdatedAt = Date.now()
+	updateLastUpdatedAt(lastUpdatedAt)
+	getData = "https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/"+apiKey+"/"+dataCurrentCity.latitude+","+dataCurrentCity.longitude
 	data = JSON.parse Utils.domLoadDataSync getData
 	current_weather.text = data.currently.summary
 	probability_value.text = data.currently.precipProbability * 100 + "%"
@@ -95,6 +103,11 @@ getWeatherData = () ->
 				curve: Spring(tension: 200, friction: 22)
 				delay: i/30
 
+updateLastUpdatedAt = (lastUpdatedAt) ->
+	last_update.text = "Last Updated: "+moment(lastUpdatedAt).fromNow()
+	
+Utils.interval 60, ->
+	updateLastUpdatedAt(lastUpdatedAt)
 
 # 📊 Lines
 linesContainer = new Layer
@@ -119,16 +132,11 @@ for i in [0...numberOfLines]
 		custom: data: {}
 	lines.push(line)
 
-Time_Indicator.opacity = 0
 isDraging = false
 
 linesContainer.on Events.TouchStart, (event, layer) ->
 	isDraging = true
 	updateSelectedLine()
-	Time_Indicator.animate
-		opacity: 1
-		options:
-			time: .2
 
 linesContainer.on Events.TouchMove, (event, layer) ->
 	if !isDraging
@@ -138,10 +146,6 @@ linesContainer.on Events.TouchMove, (event, layer) ->
 			
 linesContainer.on Events.TouchEnd, () ->
 	isDraging = false
-	Time_Indicator.animate
-		opacity: 0
-		options:
-			time: .2
 
 	currentLine.animate
 		backgroundColor: 'rgba(0,0,0, 0.25)'
@@ -160,9 +164,6 @@ updateSelectedLine = () ->
 	else
 		x_position = Events.touchEvent(event).clientX/window.devicePixelRatio  - container_margins
 		y_position = Events.touchEvent(event).clientY/window.devicePixelRatio
-		
-	Time_Indicator.x = x_position
-	Time_Indicator.y = y_position - 80
 			
 	indexCurrentLine = Utils.round((x_position - container_margins)/numberOfLines)
 	
@@ -235,12 +236,19 @@ spinner.index = 100
 
 WeatherScreen = new Layer
 	size: Screen.size
+	
+gradient.height = Screen.height + 2 * insetDistance
+info.y = 77 + insetDistance
 
 ScrollView = new ScrollComponent
 	parent: WeatherScreen
 	size: Screen.size
 	index: 1
 	scrollHorizontal: false
+	clip: false
+	contentInset:
+		top: - insetDistance
+		bottom: - insetDistance
 
 gradient.parent = ScrollView.content
 spinner.parent = WeatherScreen
@@ -282,75 +290,5 @@ ScrollView.onMove (event) ->
 				opacity: Utils.modulate(event.y, [start, start + 5], [0, 1], true)
 				options: 
 					time: 0
-
-# ⚙️ Settings
-settings.onClick (event, layer) ->
-	flow.showOverlayBottom(SettingsScreen, animate: true)
-	
-settingsClose.onClick (event, layer) ->
-	flow.showPrevious()
-	
-activeTemperatureButton = 'SettingsButtonC'
-activeGradient = SettingsButtonC.gradient
-inactiveGradient = SettingsButtonF.gradient
-buttons = [SettingsButtonC, SettingsButtonF]
-
-for button in buttons
-
-	button.onClick (event, layer) ->
-		if layer.name != activeTemperatureButton
-			activeTemperatureButton = layer.name
-			layer.children[0].animate
-				color: 'rgba(0,0,0, .6)'
-				options: 
-					time: .2
-			layer.children[1].animate
-				backgroundColor: 'rgba(0,0,0, .5)'
-				options: 
-					time: .2
-			layer.children[1].children[0].animate
-				color: '#2772EE'
-				options: 
-					time: .2
-			layer.animate
-				gradient: activeGradient
-				options: 
-					time: .2
-			
-			inactiveButtons = buttons.filter (button) ->
-				button.name != activeTemperatureButton
-				
-			for button in inactiveButtons
-				button.children[0].animate
-					color: '#777777'
-					options: 
-						time: .2
-				button.children[1].animate
-					backgroundColor: 'rgba(255,255,255, .3)'
-					options: 
-						time: .2
-				button.children[1].children[0].animate
-					color: '#333333'
-					options: 
-						time: .2
-				button.animate
-					gradient: inactiveGradient
-					options: 
-						time: .2
-	
-	button.onTouchStart (event, layer) ->
-		layer.animate
-			scale: 0.98
-			options: 
-				time: .2
-			
-	button.onTouchEnd (event, layer) ->
-		layer.animate
-			scale: 1
-			options: 
-				time: .2
-
-flow.showNext(WeatherScreen, animate: false)
-# flow.showNext(SettingsScreen, animate: false)
 
 getWeatherData()
