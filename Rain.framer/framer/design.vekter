@@ -1660,8 +1660,8 @@
                     "bottom" : null,
                     "brightness" : 100,
                     "brightnessEnabled" : 0,
-                    "centerAnchorX" : 0.36163522012578614,
-                    "centerAnchorY" : 0.47807017543859648,
+                    "centerAnchorX" : 0.49213836477987422,
+                    "centerAnchorY" : 0.47368421052631576,
                     "constraintsLocked" : false,
                     "contrast" : 100,
                     "contrastEnabled" : 0,
@@ -1671,14 +1671,14 @@
                     ],
                     "grayscale" : 0,
                     "grayScaleEnabled" : 0,
-                    "height" : 24,
+                    "height" : 28,
                     "heightFactor" : null,
                     "hueRotate" : 0,
                     "hueRotateEnabled" : 0,
                     "id" : "r4x6kgicG",
                     "invert" : 0,
                     "invertEnabled" : 0,
-                    "left" : 83,
+                    "left" : 114,
                     "locked" : false,
                     "name" : "Time Indicator",
                     "opacity" : 1,
@@ -1690,7 +1690,14 @@
                     "sepia" : 0,
                     "sepiaEnabled" : 0,
                     "shadows" : [
-
+                      {
+                        "__class" : "Shadow",
+                        "blur" : 4,
+                        "color" : "hsla(0, 0%, 0%, 0.03)",
+                        "enabled" : true,
+                        "x" : 0,
+                        "y" : 1
+                      }
                     ],
                     "styledText" : {
                       "__class" : "StyledTextDraft",
@@ -1699,11 +1706,11 @@
                           "data" : {
                             "emptyStyle" : [
                               "ALIGN:left",
-                              "COLOR:hsl(0, 0%, 100%)",
-                              "FONT:__SF-UI-Text-Medium__",
-                              "LETTERSPACING:-1.1",
+                              "COLOR:hsla(0, 0%, 100%, 0.5)",
+                              "FONT:__SF-UI-Display-Bold__",
+                              "LETTERSPACING:0.5",
                               "LINEHEIGHT:1.2",
-                              "SIZE:20"
+                              "SIZE:24"
                             ]
                           },
                           "depth" : 0,
@@ -1719,17 +1726,17 @@
                             {
                               "length" : 6,
                               "offset" : 0,
-                              "style" : "COLOR:hsl(0, 0%, 100%)"
+                              "style" : "COLOR:hsla(0, 0%, 100%, 0.5)"
                             },
                             {
                               "length" : 6,
                               "offset" : 0,
-                              "style" : "FONT:__SF-UI-Text-Medium__"
+                              "style" : "FONT:__SF-UI-Display-Bold__"
                             },
                             {
                               "length" : 6,
                               "offset" : 0,
-                              "style" : "LETTERSPACING:-1.1"
+                              "style" : "LETTERSPACING:0.5"
                             },
                             {
                               "length" : 6,
@@ -1739,7 +1746,7 @@
                             {
                               "length" : 6,
                               "offset" : 0,
-                              "style" : "SIZE:20"
+                              "style" : "SIZE:24"
                             }
                           ],
                           "key" : "3p505",
@@ -1748,11 +1755,11 @@
                         }
                       ],
                       "cached" : {
-                        "html" : "<span data-offset-key=\"3p505-0-0\" style=\"tab-size:4;font-family:&quot;.SFNSText-Medium&quot;, &quot;SFProText-Medium&quot;, &quot;SFUIText-Medium&quot;, &quot;.SFUIText-Medium&quot;, sans-serif;-webkit-text-fill-color:hsl(0, 0%, 100%);font-size:20px;letter-spacing:-1.1px;line-height:1.2\"><span data-text=\"true\">+00:10<\/span><\/span>",
+                        "html" : "<span data-offset-key=\"3p505-0-0\" style=\"tab-size:4;font-family:&quot;.SFNSDisplay-Bold&quot;, &quot;SFProDisplay-Bold&quot;, &quot;SFUIDisplay-Bold&quot;, &quot;.SFUIDisplay-Bold&quot;, sans-serif;-webkit-text-fill-color:hsla(0, 0%, 100%, 0.5);font-size:24px;letter-spacing:0.5px;line-height:1.2\"><span data-text=\"true\">+00:10<\/span><\/span>",
                         "os" : "10_13",
                         "size" : {
-                          "height" : 24,
-                          "width" : 64
+                          "height" : 28,
+                          "width" : 85
                         },
                         "width" : 0
                       },
@@ -1761,9 +1768,299 @@
                       }
                     },
                     "targetName" : "Time_Indicator",
-                    "top" : 97,
+                    "top" : 94,
                     "visible" : true,
-                    "width" : 64,
+                    "width" : 85,
+                    "widthFactor" : null
+                  },
+                  {
+                    "__class" : "OvalShapeNode",
+                    "aspectRatioLocked" : true,
+                    "boxShadows" : [
+
+                    ],
+                    "exportOptions" : [
+
+                    ],
+                    "fillColor" : "#CCC",
+                    "fillEnabled" : false,
+                    "fillGradient" : {
+                      "__class" : "LinearGradient",
+                      "alpha" : 1,
+                      "angle" : 0,
+                      "end" : "rgba(0,0,0,0)",
+                      "start" : "black"
+                    },
+                    "fillImage" : null,
+                    "fillImagePixelHeight" : null,
+                    "fillImagePixelWidth" : null,
+                    "fillImageResize" : "fill",
+                    "fillType" : "color",
+                    "height" : 24,
+                    "id" : "Ma63dfJtA",
+                    "lineCap" : "butt",
+                    "lineJoin" : "miter",
+                    "locked" : false,
+                    "name" : null,
+                    "opacity" : 1,
+                    "parentid" : "VSYdyloUR",
+                    "rotation" : 0,
+                    "strokeAlignment" : "center",
+                    "strokeColor" : "hsla(0, 0%, 100%, 0.5)",
+                    "strokeDashArray" : "0",
+                    "strokeDashOffset" : 0,
+                    "strokeEnabled" : 1,
+                    "strokeMiterLimit" : 4,
+                    "strokeWidth" : 2,
+                    "targetName" : null,
+                    "visible" : true,
+                    "width" : 24,
+                    "x" : 81,
+                    "y" : 97
+                  },
+                  {
+                    "__class" : "PathNode",
+                    "aspectRatioLocked" : false,
+                    "boxShadows" : [
+
+                    ],
+                    "exportOptions" : [
+
+                    ],
+                    "fillColor" : "rgba(0,170,255,0.5)",
+                    "fillEnabled" : false,
+                    "fillGradient" : {
+                      "__class" : "LinearGradient",
+                      "alpha" : 1,
+                      "angle" : 0,
+                      "end" : "rgba(0,0,0,0)",
+                      "start" : "black"
+                    },
+                    "fillImage" : null,
+                    "fillImagePixelHeight" : null,
+                    "fillImagePixelWidth" : null,
+                    "fillImageResize" : "fill",
+                    "fillType" : "color",
+                    "height" : 9,
+                    "id" : "QPOvemp7Y",
+                    "lineCap" : "round",
+                    "lineJoin" : "miter",
+                    "locked" : false,
+                    "name" : null,
+                    "opacity" : 1,
+                    "parentid" : "VSYdyloUR",
+                    "pathClosed" : false,
+                    "pathSegments" : [
+                      {
+                        "__class" : "PathSegment",
+                        "handleInX" : 0,
+                        "handleInY" : 0,
+                        "handleMirroring" : "straight",
+                        "handleOutX" : 0,
+                        "handleOutY" : 0,
+                        "radius" : 0,
+                        "x" : 0,
+                        "y" : 0
+                      },
+                      {
+                        "__class" : "PathSegment",
+                        "handleInX" : 0,
+                        "handleInY" : 0,
+                        "handleMirroring" : "straight",
+                        "handleOutX" : 0,
+                        "handleOutY" : 0,
+                        "radius" : 0,
+                        "x" : 0,
+                        "y" : 9
+                      }
+                    ],
+                    "rotation" : 0,
+                    "strokeAlignment" : "center",
+                    "strokeColor" : "hsla(0, 0%, 100%, 0.5)",
+                    "strokeDashArray" : "0",
+                    "strokeDashOffset" : 0,
+                    "strokeEnabled" : 1,
+                    "strokeMiterLimit" : 4,
+                    "strokeWidth" : 2,
+                    "targetName" : null,
+                    "visible" : true,
+                    "width" : 1,
+                    "x" : 93,
+                    "y" : 101
+                  },
+                  {
+                    "__class" : "PathNode",
+                    "aspectRatioLocked" : false,
+                    "boxShadows" : [
+
+                    ],
+                    "exportOptions" : [
+
+                    ],
+                    "fillColor" : "rgba(0,170,255,0.5)",
+                    "fillEnabled" : false,
+                    "fillGradient" : {
+                      "__class" : "LinearGradient",
+                      "alpha" : 1,
+                      "angle" : 0,
+                      "end" : "rgba(0,0,0,0)",
+                      "start" : "black"
+                    },
+                    "fillImage" : null,
+                    "fillImagePixelHeight" : null,
+                    "fillImagePixelWidth" : null,
+                    "fillImageResize" : "fill",
+                    "fillType" : "color",
+                    "height" : 3,
+                    "id" : "Hr3nLggu7",
+                    "lineCap" : "round",
+                    "lineJoin" : "miter",
+                    "locked" : false,
+                    "name" : null,
+                    "opacity" : 1,
+                    "parentid" : "VSYdyloUR",
+                    "pathClosed" : false,
+                    "pathSegments" : [
+                      {
+                        "__class" : "PathSegment",
+                        "handleInX" : 0,
+                        "handleInY" : 0,
+                        "handleMirroring" : "straight",
+                        "handleOutX" : 0,
+                        "handleOutY" : 0,
+                        "radius" : 0,
+                        "x" : 0,
+                        "y" : 0
+                      },
+                      {
+                        "__class" : "PathSegment",
+                        "handleInX" : 0,
+                        "handleInY" : 0,
+                        "handleMirroring" : "straight",
+                        "handleOutX" : 0,
+                        "handleOutY" : 0,
+                        "radius" : 0,
+                        "x" : 4,
+                        "y" : 3
+                      }
+                    ],
+                    "rotation" : 0,
+                    "strokeAlignment" : "center",
+                    "strokeColor" : "hsla(0, 0%, 100%, 0.5)",
+                    "strokeDashArray" : "0",
+                    "strokeDashOffset" : 0,
+                    "strokeEnabled" : 1,
+                    "strokeMiterLimit" : 4,
+                    "strokeWidth" : 2,
+                    "targetName" : null,
+                    "visible" : true,
+                    "width" : 4,
+                    "x" : 93,
+                    "y" : 110
+                  },
+                  {
+                    "__class" : "TextNode",
+                    "autoSize" : false,
+                    "blendingEnabled" : 0,
+                    "blendingMode" : "normal",
+                    "blur" : 12,
+                    "blurEnabled" : 0,
+                    "blurType" : "layer",
+                    "bottom" : null,
+                    "brightness" : 100,
+                    "brightnessEnabled" : 0,
+                    "centerAnchorX" : 0.51415094339622647,
+                    "centerAnchorY" : -0.39912280701754388,
+                    "constraintsLocked" : false,
+                    "contrast" : 100,
+                    "contrastEnabled" : 0,
+                    "editable" : false,
+                    "exportOptions" : [
+
+                    ],
+                    "grayscale" : 0,
+                    "grayScaleEnabled" : 0,
+                    "height" : 18,
+                    "heightFactor" : null,
+                    "hueRotate" : 0,
+                    "hueRotateEnabled" : 0,
+                    "id" : "aAu_P0QHa",
+                    "invert" : 0,
+                    "invertEnabled" : 0,
+                    "left" : -24,
+                    "locked" : false,
+                    "name" : "last_update",
+                    "opacity" : 1,
+                    "parentid" : "VSYdyloUR",
+                    "right" : -33,
+                    "rotation" : 0,
+                    "saturate" : 100,
+                    "saturateEnabled" : 0,
+                    "sepia" : 0,
+                    "sepiaEnabled" : 0,
+                    "shadows" : [
+
+                    ],
+                    "styledText" : {
+                      "__class" : "StyledTextDraft",
+                      "blocks" : [
+                        {
+                          "data" : {
+                            "emptyStyle" : [
+                              "COLOR:hsla(0, 0%, 100%, 0.42)",
+                              "FONT:__SF-UI-Text-Regular__",
+                              "SIZE:15",
+                              "ALIGN:center"
+                            ]
+                          },
+                          "depth" : 0,
+                          "entityRanges" : [
+
+                          ],
+                          "inlineStyleRanges" : [
+                            {
+                              "length" : 14,
+                              "offset" : 0,
+                              "style" : "COLOR:hsla(0, 0%, 100%, 0.42)"
+                            },
+                            {
+                              "length" : 14,
+                              "offset" : 0,
+                              "style" : "FONT:__SF-UI-Text-Regular__"
+                            },
+                            {
+                              "length" : 14,
+                              "offset" : 0,
+                              "style" : "SIZE:15"
+                            },
+                            {
+                              "length" : 14,
+                              "offset" : 0,
+                              "style" : "ALIGN:center"
+                            }
+                          ],
+                          "key" : "u949",
+                          "text" : "Last Updated: ",
+                          "type" : "unstyled"
+                        }
+                      ],
+                      "cached" : {
+                        "html" : "<span data-offset-key=\"u949-0-0\" style=\"tab-size:4;font-family:&quot;.SFNSText&quot;, &quot;SFProText-Regular&quot;, &quot;SFUIText-Regular&quot;, &quot;.SFUIText&quot;, sans-serif;-webkit-text-fill-color:hsla(0, 0%, 100%, 0.42);font-size:15px;letter-spacing:0px;line-height:1.2\"><span data-text=\"true\">Last Updated: <\/span><\/span>",
+                        "os" : "10_13",
+                        "size" : {
+                          "height" : 18,
+                          "width" : 319
+                        },
+                        "width" : 318
+                      },
+                      "entityMap" : {
+
+                      }
+                    },
+                    "targetName" : "last_update",
+                    "top" : -100,
+                    "visible" : true,
+                    "width" : 375,
                     "widthFactor" : null
                   }
                 ],
@@ -1823,111 +2120,6 @@
                 "top" : 42,
                 "visible" : true,
                 "width" : 318,
-                "widthFactor" : null
-              },
-              {
-                "__class" : "TextNode",
-                "autoSize" : false,
-                "blendingEnabled" : 0,
-                "blendingMode" : "normal",
-                "blur" : 12,
-                "blurEnabled" : 0,
-                "blurType" : "layer",
-                "bottom" : null,
-                "brightness" : 100,
-                "brightnessEnabled" : 0,
-                "centerAnchorX" : 0.5,
-                "centerAnchorY" : 0.023399014778325122,
-                "constraintsLocked" : false,
-                "contrast" : 100,
-                "contrastEnabled" : 0,
-                "editable" : false,
-                "exportOptions" : [
-
-                ],
-                "grayscale" : 0,
-                "grayScaleEnabled" : 0,
-                "height" : 18,
-                "heightFactor" : null,
-                "hueRotate" : 0,
-                "hueRotateEnabled" : 0,
-                "id" : "aAu_P0QHa",
-                "invert" : 0,
-                "invertEnabled" : 0,
-                "left" : 0,
-                "locked" : false,
-                "name" : "last_update",
-                "opacity" : 1,
-                "parentid" : "SiE1LhoIE",
-                "right" : 0,
-                "rotation" : 0,
-                "saturate" : 100,
-                "saturateEnabled" : 0,
-                "sepia" : 0,
-                "sepiaEnabled" : 0,
-                "shadows" : [
-
-                ],
-                "styledText" : {
-                  "__class" : "StyledTextDraft",
-                  "blocks" : [
-                    {
-                      "data" : {
-                        "emptyStyle" : [
-                          "COLOR:hsla(0, 0%, 100%, 0.42)",
-                          "FONT:__SF-UI-Text-Regular__",
-                          "SIZE:15",
-                          "ALIGN:center"
-                        ]
-                      },
-                      "depth" : 0,
-                      "entityRanges" : [
-
-                      ],
-                      "inlineStyleRanges" : [
-                        {
-                          "length" : 14,
-                          "offset" : 0,
-                          "style" : "COLOR:hsla(0, 0%, 100%, 0.42)"
-                        },
-                        {
-                          "length" : 14,
-                          "offset" : 0,
-                          "style" : "FONT:__SF-UI-Text-Regular__"
-                        },
-                        {
-                          "length" : 14,
-                          "offset" : 0,
-                          "style" : "SIZE:15"
-                        },
-                        {
-                          "length" : 14,
-                          "offset" : 0,
-                          "style" : "ALIGN:center"
-                        }
-                      ],
-                      "key" : "u949",
-                      "text" : "Last Updated: ",
-                      "type" : "unstyled"
-                    }
-                  ],
-                  "cached" : {
-                    "html" : "<span data-offset-key=\"u949-0-0\" style=\"tab-size:4;font-family:&quot;.SFNSText&quot;, &quot;SFProText-Regular&quot;, &quot;SFUIText-Regular&quot;, &quot;.SFUIText&quot;, sans-serif;-webkit-text-fill-color:hsla(0, 0%, 100%, 0.42);font-size:15px;letter-spacing:0px;line-height:1.2\"><span data-text=\"true\">Last Updated: <\/span><\/span>",
-                    "os" : "10_13",
-                    "size" : {
-                      "height" : 18,
-                      "width" : 376
-                    },
-                    "width" : 375
-                  },
-                  "entityMap" : {
-
-                  }
-                },
-                "targetName" : "last_update",
-                "top" : 10,
-                "visible" : true,
-                "width" : 375,
                 "widthFactor" : null
               }
             ],
